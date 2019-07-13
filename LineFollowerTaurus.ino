@@ -87,25 +87,25 @@ void retoEmFrente( byte velocidade ) {
   analogWrite(Ena, velocidade + correcaoMotorEsquerdo );
   analogWrite(Enb, velocidade + correcaoMotorDireito );
   digitalWrite(In1, 0); //rotaçao para tras motor direito
-  digitalWrite(In2, 1); //rotaçao para frente motor direito
-  digitalWrite(In3, 1); //rotaçao para frente motor esquerdo
   digitalWrite(In4, 0); //rotaçao para tras motor esquerdo
+  digitalWrite(In2, 1); //rotaçao para frente motor direito
+  digitalWrite(In3, 1); //rotaçao para frente motor esquerdo  
 }
 
 void curvaDireita( byte velocidade ) {
   analogWrite(Ena, velocidade + correcaoMotorEsquerdo );
   analogWrite(Enb, velocidade + correcaoMotorDireito );
-  digitalWrite(In1, 1); //rotaçao para tras motor direito
   digitalWrite(In2, 0); //rotaçao para frente motor direito
-  digitalWrite(In3, 1); //rotaçao para frente motor esquerdo
   digitalWrite(In4, 0); //rotaçao para tras motor esquerdo
+  digitalWrite(In1, 1); //rotaçao para tras motor direito  
+  digitalWrite(In3, 1); //rotaçao para frente motor esquerdo  
 }
 
 void curvaEsquerda( byte velocidade ) {
   analogWrite(Ena, velocidade + correcaoMotorEsquerdo );
   analogWrite(Enb, velocidade + correcaoMotorDireito );
   digitalWrite(In1, 0); //rotaçao para tras motor direito
-  digitalWrite(In2, 1); //rotaçao para frente motor direito
   digitalWrite(In3, 0); //rotaçao para frente motor esquerdo
+  digitalWrite(In2, 1); //rotaçao para frente motor direito  
   digitalWrite(In4, 1); //rotaçao para tras motor esquerdo
 }
