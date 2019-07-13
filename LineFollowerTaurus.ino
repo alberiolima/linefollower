@@ -57,44 +57,44 @@ void loop() {
 
   if (Sensor == 0b00100) {
     //Serial.println("RETA");
-    analogWrite(Ena, VEL_MED + correcaoMotorDireito );
+    analogWrite(Ena, VEL_MED + correcaoMotorEsquerdo );
     digitalWrite(In1, 0); //rotaçao para tras motor direito
     digitalWrite(In2, 1); //rotaçao para frente motor direito
     digitalWrite(In3, 1); //rotaçao para frente motor esquerdo
     digitalWrite(In4, 0); //rotaçao para tras motor esquerdo
-    analogWrite(Enb, VEL_MED + correcaoMotorEsquerdo);
+    analogWrite(Enb, VEL_MED + correcaoMotorDireito );
   } else if (Sensor == 0b00010) {
     //Serial.println("curva suave para direita");
-    analogWrite(Ena, VEL_MED + correcaoMotorDireito);
+    analogWrite(Ena, VEL_MED + correcaoMotorEsquerdo );
     digitalWrite(In1, 1); //rotaçao para tras motor direito
     digitalWrite(In2, 0); //rotaçao para frente motor direito
     digitalWrite(In3, 1); //rotaçao para frente motor esquerdo
     digitalWrite(In4, 0); //rotaçao para tras motor esquerdo
-    analogWrite(Enb, VEL_MED + correcaoMotorEsquerdo);
+    analogWrite(Enb, VEL_MED + correcaoMotorDireito );
   } else if (Sensor == 0b01000) {
     //Serial.println("curva suave para esquerda");
-    analogWrite(Ena, VEL_MED + correcaoMotorDireito);
+    analogWrite(Ena, VEL_MED + correcaoMotorEsquerdo );
     digitalWrite(In1, 0); //rotaçao para tras motor direito
     digitalWrite(In2, 1); //rotaçao para frente motor direito
     digitalWrite(In3, 0); //rotaçao para frente motor esquerdo
     digitalWrite(In4, 1); //rotaçao para tras motor esquerdo
-    analogWrite(Enb, VEL_MED + correcaoMotorEsquerdo);
+    analogWrite(Enb, VEL_MED + correcaoMotorDireito );
   } else if (Sensor == 0b00001) {
     //Serial.println("curva fechada para direita");
-    analogWrite(Ena, VEL_MAX + correcaoMotorDireito);
+    analogWrite(Ena, VEL_MAX + correcaoMotorEsquerdo );
     digitalWrite(In1, 1); //rotaçao para tras motor direito
     digitalWrite(In2, 0); //rotaçao para frente motor direito
     digitalWrite(In3, 1); //rotaçao para frente motor esquerdo
     digitalWrite(In4, 0); //rotaçao para tras motor esquerdo
-    analogWrite(Enb, VEL_MAX + correcaoMotorEsquerdo);
+    analogWrite(Enb, VEL_MAX + correcaoMotorDireito );
   } else if (Sensor == 0b10000) {
     //Serial.println("curva fechada para esquerda");
-    analogWrite(Ena, VEL_MAX + correcaoMotorDireito);
+    analogWrite(Ena, VEL_MAX + correcaoMotorEsquerdo );
     digitalWrite(In1, 0); //rotaçao para tras motor direito
     digitalWrite(In2, 1); //rotaçao para frente motor direito
     digitalWrite(In3, 0); //rotaçao para frente motor esquerdo
     digitalWrite(In4, 1); //rotaçao para tras motor esquerdo
-    analogWrite(Enb, VEL_MAX + correcaoMotorEsquerdo);
+    analogWrite(Enb, VEL_MAX + correcaoMotorDireito );
   }
 }
 /*
