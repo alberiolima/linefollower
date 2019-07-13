@@ -1,0 +1,154 @@
+int Sensor1,Sensor2,Sensor3,Sensor4,Sensor5;
+
+#define PinoSensor1 13 
+#define PinoSensor2 12 
+#define PinoSensor3 11 
+#define PinoSensor4 10 
+#define PinoSensor5  7
+
+#define Ena  5  //pino velocidade motor esquerdo
+#define In1 A4  //rotaçao para tras motor esquerdo
+#define In2 A3  //rotaçao para frente motor esquerdo
+#define In3 A2  //rotaçao para frente motor direito
+#define In4 A1  //rotaçao para tras motor direito
+#define Enb  6  //pino velocidade motor direito
+ 
+void setup() 
+{
+  //Serial.begin(9600);
+  pinMode(PinoSensor1,INPUT);
+  pinMode(PinoSensor2,INPUT);
+  pinMode(PinoSensor3,INPUT);
+  pinMode(PinoSensor4,INPUT);
+  pinMode(PinoSensor5,INPUT);
+
+  pinMode(Ena,OUTPUT);
+  pinMode(In1,OUTPUT);
+  pinMode(In2,OUTPUT);
+  pinMode(In3,OUTPUT);
+  pinMode(In4,OUTPUT);
+  pinMode(Enb,OUTPUT);
+}
+void loop() 
+{
+  /*
+  Serial.println(("Sensor1 :")+String(!digitalRead(PinoSensor1)));
+  Serial.println(("Sensor2 :")+String(!digitalRead(PinoSensor2)));
+  Serial.println(("Sensor3 :")+String(!digitalRead(PinoSensor3)));
+  Serial.println(("Sensor4 :")+String(!digitalRead(PinoSensor4)));
+  Serial.println(("Sensor5 :")+String(!digitalRead(PinoSensor5)));
+  Serial.println("");
+  */
+ 
+
+  Sensor1=!digitalRead(PinoSensor1);
+  Sensor2=!digitalRead(PinoSensor2);
+  Sensor3=!digitalRead(PinoSensor3);
+  Sensor4=!digitalRead(PinoSensor4);
+  Sensor5=!digitalRead(PinoSensor5);
+
+ 
+  /***********************************reta*******************************/
+  /*****esquerda**********************meio*********************direito***/
+  if((Sensor1==0)&&(Sensor2==0)&&(Sensor3==1)&&(Sensor4==0)&&(Sensor5==0))
+  {
+    //Serial.println("RETA");
+    analogWrite(Ena,150);
+    digitalWrite(In1,0);  //rotaçao para tras motor direito
+    digitalWrite(In2,1);  //rotaçao para frente motor direito
+    digitalWrite(In3,1);  //rotaçao para frente motor esquerdo
+    digitalWrite(In4,0);  //rotaçao para tras motor esquerdo
+    analogWrite(Enb,150);
+  }
+  
+  /********************************linha preta***************************/
+  /*****esquerda**********************meio*********************direito*** /
+  else if((Sensor1==1)&&(Sensor2==1)&&(Sensor3==0)&&(Sensor4==1)&&(Sensor5==1))
+  {
+    Serial.println("linha preta");
+    analogWrite(Ena,255);
+    digitalWrite(In1,1);  //rotaçao para tras motor direito
+    digitalWrite(In2,1);  //rotaçao para frente motor direito
+    digitalWrite(In3,1);  //rotaçao para frente motor esquerdo
+    digitalWrite(In4,1);  //rotaçao para tras motor esquerdo
+    analogWrite(Enb,255);
+  }
+  
+  /******************************saiu da trilha**************************/
+  /*****esquerda**********************meio*********************direito***/
+  else if((Sensor1==0)&&(Sensor2==0)&&(Sensor3==0)&&(Sensor4==0)&&(Sensor5==0))
+  {
+    //Serial.println("saiu da trilha"); 
+    analogWrite(Ena,150);
+    digitalWrite(In1,0);  //rotaçao para tras motor direito
+    digitalWrite(In2,1);  //rotaçao para frente motor direito
+    digitalWrite(In3,1);  //rotaçao para frente motor esquerdo
+    digitalWrite(In4,0);  //rotaçao para tras motor esquerdo
+    analogWrite(Enb,150);
+  } 
+
+   /********************************tudo preto***************************/
+  /*****esquerda**********************meio*********************direito***/
+  else if((Sensor1==1)&&(Sensor2==1)&&(Sensor3==1)&&(Sensor4==1)&&(Sensor5==1))
+  {
+    //Serial.println("tudo preto"); 
+    analogWrite(Ena,0);
+    digitalWrite(In1,1);  //rotaçao para tras motor direito
+    digitalWrite(In2,1);  //rotaçao para frente motor direito
+    digitalWrite(In3,1);  //rotaçao para frente motor esquerdo
+    digitalWrite(In4,1);  //rotaçao para tras motor esquerdo
+    analogWrite(Enb,0);
+ 
+  } 
+  
+  /****************************curva suave para direita****************/
+  /*****esquerda**********************meio*********************direito***/
+  else if((Sensor1==0)&&(Sensor2==0)&&(Sensor3==0)&&(Sensor4==1)&&(Sensor5==0))
+  {
+    //Serial.println("curva suave para direita");
+    analogWrite(Ena,150);
+    digitalWrite(In1,1);  //rotaçao para tras motor direito
+    digitalWrite(In2,0);  //rotaçao para frente motor direito
+    digitalWrite(In3,1);  //rotaçao para frente motor esquerdo
+    digitalWrite(In4,0);  //rotaçao para tras motor esquerdo
+    analogWrite(Enb,150);
+  }
+  
+  /**************************curva suave para esquerda*******************/
+  /*****esquerda**********************meio*********************direito***/
+  else if((Sensor1==0)&&(Sensor2==1)&&(Sensor3==0)&&(Sensor4==0)&&(Sensor5==0))
+  {
+    //Serial.println("curva suave para esquerda");
+    analogWrite(Ena,150);
+    digitalWrite(In1,0);  //rotaçao para tras motor direito
+    digitalWrite(In2,1);  //rotaçao para frente motor direito
+    digitalWrite(In3,0);  //rotaçao para frente motor esquerdo
+    digitalWrite(In4,1);  //rotaçao para tras motor esquerdo
+    analogWrite(Enb,150);
+  }
+  /**************************curva fechada para direita******************/
+  /*****esquerda**********************meio*********************direito***/
+  else if((Sensor1==0)&&(Sensor2==0)&&(Sensor3==0)&&(Sensor4==0)&&(Sensor5==1))
+  {
+    //Serial.println("curva fechada para direita");
+    analogWrite(Ena,255);
+    digitalWrite(In1,1);  //rotaçao para tras motor direito
+    digitalWrite(In2,0);  //rotaçao para frente motor direito
+    digitalWrite(In3,1);  //rotaçao para frente motor esquerdo
+    digitalWrite(In4,0);  //rotaçao para tras motor esquerdo
+    analogWrite(Enb,255);
+  }
+  
+  /***********************curva fechada para esquerda********************/
+  /*****esquerda**********************meio*********************direito***/
+  else if((Sensor1==1)&&(Sensor2==0)&&(Sensor3==0)&&(Sensor4==0)&&(Sensor5==0))
+  {
+    //Serial.println("curva fechada para esquerda"); 
+    analogWrite(Ena,255);
+    digitalWrite(In1,0);  //rotaçao para tras motor direito
+    digitalWrite(In2,1);  //rotaçao para frente motor direito
+    digitalWrite(In3,0);  //rotaçao para frente motor esquerdo
+    digitalWrite(In4,1);  //rotaçao para tras motor esquerdo
+    analogWrite(Enb,255);
+  }
+}
